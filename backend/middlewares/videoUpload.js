@@ -3,7 +3,6 @@ const path = require('path')
 const uuid = require('uuid').v4;
 
 
-//destination dir
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         if(file.fieldname === 'video') {
