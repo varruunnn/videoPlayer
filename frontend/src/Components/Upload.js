@@ -35,7 +35,7 @@ function Upload() {
             formData.append('description', e.target.description.value)
             formData.append('video', e.target.video.files[0]);
 
-            const res = await fetch('http://localhost:8000/api/upload', {
+            const res = await fetch('https://videoplayer-j8hv.onrender.com/api/upload', {
                 method: 'POST',
                 body: formData
             })
@@ -94,7 +94,6 @@ function Upload() {
                             name="video" 
                             id="video"
                             accept="video/*"
-                            //hidden
                             hidden
                             onChange={handleVideo}
                         />
