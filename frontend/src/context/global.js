@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 
 const GlobalContext = React.createContext()
 
-//actions
 const LOADING = 'LOADING'
 const SET_VIDEOS = 'SET_VIDEOS'
 const SET_SELECTED_VIDEO = 'SET_SELECTED_VIDEO'
@@ -19,7 +18,7 @@ const reducer = (state, action) => {
                     ...action.payload.map((video) => {
                         return{
                             ...video,
-                            videoUrl: `http://localhost:8000/public/videos/${video.filename}`
+                            videoUrl: `https://videoplayer-j8hv.onrender.com/public/videos/${video.filename}`
                         }
                     })
                 ]
@@ -27,8 +26,6 @@ const reducer = (state, action) => {
         default:
             return state
     }
-
-    return state
 }
 
 export const GlobalProvider = ({children}) => {
@@ -40,11 +37,9 @@ export const GlobalProvider = ({children}) => {
     }
 
     const [state, dispatch] = React.useReducer(reducer, initialState)
-
-    //get videos
     const getAllVideos = async () => {
         try {
-            const res = await fetch('http://localhost:8000/api/videos');
+            const res = await fetch('https://videoplayer-j8hv.onrender.com/api/videos');
             const data = await res.json()
 
             dispatch({type: SET_VIDEOS, payload: data.videos})
