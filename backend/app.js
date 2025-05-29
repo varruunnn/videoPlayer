@@ -18,6 +18,15 @@ readdirSync('./routes').map((route) => app.use('/api', require('./routes/' + rou
 
 app.use('/public', express.static(path.join(__dirname, 'public')))
 
+
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    uptime: process.uptime(),
+    timestamp: new Date(),
+  });
+});
+
 const server = () => {
     dbConnection()
     app.listen(PORT, () => {
